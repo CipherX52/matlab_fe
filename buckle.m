@@ -21,10 +21,14 @@ function [pb,ub]=buckle(Ks,Ksigmas,nnode,node_z);
 bending = zeros(3*(nnode-1),3*(nnode-1));
 twist = zeros(3*(nnode-1),3*(nnode-1));
 
+bend_ind = [];
+twist_ind = [];
+
 for i = 1:3*(nnode-1)
     a = ub(:,i);
     if abs(a(1))> 0.0001
         bending(:,i) = a;
+        bend_ind = [bend_ind, i];
         continue;
     end
     if abs(a(1)) < 0.0001
@@ -32,6 +36,7 @@ for i = 1:3*(nnode-1)
             for k = 1:3*(nnode-1)
                 if abs(a(k)) > 0.0001
                     twist(:,i) = a;
+                    twist_ind = [twist_ind, i];
                     continue;
                 end
             end
@@ -82,7 +87,8 @@ ylabel('Twist');
 title(tcl,'Buckling modes');
 
 % Present the buckling loads
-[buckling_load,~] = min(diag(pb));
-fprintf('Buckling Load: %.3fN \n', buckling_load);
-% buckling_load = (2*ind-1)^2*pi^2*EI/4/le^2;
-% disp(buckling_load);
+pb = diag(pb);
+fprintf('Torsion Buckling loads: %.3f \n',pb(twist_ind(1)));
+fprintf('Euler Buckling loads: %.3f \n',pb(bend_ind));
+fprintf('Number of Torsional Buckling modes: %d \n',length(twist_ind));
+fprintf('Number of Bending Buckling modes: %d \n',length(bend_ind));

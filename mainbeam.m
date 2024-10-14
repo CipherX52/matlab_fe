@@ -18,20 +18,24 @@ L=1.0;		% Length [m]
 % tf = 3E-3;
 % tw = 1E-3;
 
-E=7E+10;	% Youngs modulus [N/m2]
-G=2.6923E+10;	% Shear modulus [N/m2]
+% E=7E+10;	% Youngs modulus [N/m2]
+% G=2.6923E+10;	% Shear modulus [N/m2]
 
-I=2E-9;		% Moment of inertia about x-axis [m4]
+% I=2E-9;		% Moment of inertia about x-axis [m4]
+% J=1E-9;		% Torsional constant [m4]
+% EI=E*I;		% Bending stiffness [Nm2]
+% GJ=G*J;		% Torsional stiffness [Nm2]
+I = 1;
+J = 1;
+E = 1;
+G = 1;
+EI = 1;
+GJ = 1;
 
-J=1E-9;		% Torsional constant [m4]
-EI=E*I;		% Bending stiffness [Nm2]
-GJ=G*J;		% Torsional stiffness [Nm2]
-% EI = 1;
-% GJ = 1;
-
-I0=4E-8;	% Polar moment of inertia [m4]
-A=1.2E-4;	% Cross-section area [m2]
-
+% I0=4E-8;	% Polar moment of inertia [m4]
+% A=1.2E-4;	% Cross-section area [m2]
+I0 = 1;
+A = 1;
 %change area for 2nd part
 % A = tw*h + 2*tf*(b-tw);
 
@@ -42,7 +46,7 @@ J0=I0*ro;	% Mass moment of inertia [kgm]
 m=A*ro;	% mass per unit length of elements [kg/m]
 q=1;           % Distributed load [N/m]
 qt=0;		% Distributed torque [Nm/m]
-S=1;           % Concentrated load at end of beam [N]
+S=0;           % Concentrated load at end of beam [N]
 T=1;		% Beam end torque [Nm]
 P=-1;		% Buckling load [N]
 
