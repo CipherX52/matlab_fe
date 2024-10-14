@@ -22,9 +22,10 @@ ndof = 3*(nnode);
 % Solve system of equations
 ws = Ks\Qs;
 % Present displacements at the free end
-
+fprintf('Displacement at the free end: %.3fm \n',ws(end-2));
 % Present reaction forces
 Fr = K(1:3,4:ndof)*ws;
+fprintf('Reaction Forces: %.3fN \n', Fr);
 % Create result vector containing deflections, rotations and twist
 w = [[0,0,0],ws']';
 % Split deflections, rotations and twist into separate vectors

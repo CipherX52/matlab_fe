@@ -30,7 +30,7 @@ for i = 1:3*(nnode-1)
     if abs(a(1)) < 0.0001
         if abs(a(2)) < 0.0001
             for k = 1:3*(nnode-1)
-                if abs(a(k))< 0.0001
+                if abs(a(k)) > 0.0001
                     twist(:,i) = a;
                     continue;
                 end
@@ -82,6 +82,7 @@ ylabel('Twist');
 title(tcl,'Buckling modes');
 
 % Present the buckling loads
-[~,ind] = min(diag(pb));
-buckling_load = (2*ind-1)^2*pi^2*EI/4/le^2;
-disp(buckling_load);
+[buckling_load,~] = min(diag(pb));
+fprintf('Buckling Load: %.3fN \n', buckling_load);
+% buckling_load = (2*ind-1)^2*pi^2*EI/4/le^2;
+% disp(buckling_load);

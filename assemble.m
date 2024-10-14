@@ -43,7 +43,8 @@ for i = 1:nelem
    k = k+3;
 end
 
-
+Q(end-2) = Q(end-2)+S;
+Q(end) = Q(end)+T;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Add concentrated loads

@@ -24,10 +24,10 @@ G=2.6923E+10;	% Shear modulus [N/m2]
 I=2E-9;		% Moment of inertia about x-axis [m4]
 
 J=1E-9;		% Torsional constant [m4]
-% EI=E*I;		% Bending stiffness [Nm2]
-% GJ=G*J;		% Torsional stiffness [Nm2]
-EI = 1;
-GJ = 1;
+EI=E*I;		% Bending stiffness [Nm2]
+GJ=G*J;		% Torsional stiffness [Nm2]
+% EI = 1;
+% GJ = 1;
 
 I0=4E-8;	% Polar moment of inertia [m4]
 A=1.2E-4;	% Cross-section area [m2]
@@ -44,10 +44,10 @@ q=1;           % Distributed load [N/m]
 qt=0;		% Distributed torque [Nm/m]
 S=1;           % Concentrated load at end of beam [N]
 T=1;		% Beam end torque [Nm]
-P=-1.;		% Buckling load [N]
+P=-1;		% Buckling load [N]
 
 % Element input data
-nelem=500;		% number of elements
+nelem=10;		% number of elements
 le=L/nelem; 	% length of elements for even distribution
 ndof=3*(nelem+1);	% number of degrees of freedom
 nnode=nelem+1;		% number of nodes
@@ -71,7 +71,7 @@ Ksigmas=Ksigma(4:ndof,4:ndof);
 
 % Solve beam bending and torsion equation and present results
 
-% [defl,teta,fi,wmax,tmax,fimax]=bending(Ks,Qs,K,Q,nnode,node_z);
+[defl,teta,fi,wmax,tmax,fimax]=bending(Ks,Qs,K,Q,nnode,node_z);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Solve beam buckling equation and plot results
@@ -82,3 +82,6 @@ Ksigmas=Ksigma(4:ndof,4:ndof);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [pb,ub]=buckle(Ks,Ksigmas,nnode,node_z);
 
+% [~,ind] = min(diag(pb));
+% buckling_load = (2*ind-1)^2*pi^2*EI/4/le^2;
+% fprintf('Critical Buckling Load: %fN \n',buckling_load);
