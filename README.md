@@ -1,6 +1,6 @@
 ## FE with MATLAB
 
-FE-code in MatLab, using beam elements and solving bending/torsion and also axial buckling of a cantilever beam
+FE-code in MatLab, using beam elements and solving bending/torsion and axial buckling of a cantilever beam
 
 ~ Code template as part of SD2411, Lightweight Structures and FEM at KTH ~
 

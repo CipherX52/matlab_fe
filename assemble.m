@@ -39,7 +39,7 @@ for i = 1:nelem
 
    K(k+1:k+6,k+1:k+6) = K(k+1:k+6,k+1:k+6) + Ke;
    Q(k+1:k+6) = Q(k+1:k+6) + Qe;
-   Ksigma(k+1:k+6,k+1:k+6) = Ksigma(k+1:k+6,k+1:k+6) + Kesigma;
+   Ksigma = Ksigma(k+1:k+6,k+1:k+6) + Kesigma;
    k = k+3;
 end
 

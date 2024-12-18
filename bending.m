@@ -26,7 +26,7 @@ fprintf('Displacement at the free end: %.3fm \n',ws(end-2));
 fprintf('Rotation at the free end: %.3f \n',ws(end-1));
 fprintf('Twist at the free end: %.3f \n',ws(end));
 % Present reaction forces
-Fr = K(1:3,4:ndof)*ws - Q(1:3)
+Fr = K(1:3,4:ndof)*ws - Q(1:3);
 % fprintf('Reaction Forces: %.3f \n', Fr);
 % Create result vector containing deflections, rotations and twist
 w = [[0,0,0],ws']';
@@ -36,6 +36,7 @@ w = [[0,0,0],ws']';
 defl = w(1:3:ndof);
 teta = w(2:3:ndof);
 fi = w(3:3:ndof);
+
 
 % Normalise deflections, rotations and twist and plot results
 umax = max(abs(defl));
@@ -67,3 +68,8 @@ xlabel('Node');
 ylabel('Twist');
 
 title(tcl,'Bending Plots');
+
+
+fprintf('defl_end:%.3fm',defl(end));
+teta(end)
+fi(end)
